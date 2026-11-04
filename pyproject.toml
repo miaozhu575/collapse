@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "collapse"
+version = "0.1.0"
+description = "Cell-level fragment deduplication, collision detection, and group-aware QC for single-cell and spatial ATAC-seq"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "Miao Zhu"}
+]
+keywords = ["single-cell", "spatial", "ATAC-seq", "genomics", "deduplication", "collision", "quality-control"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "numpy>=1.22.0",
+    "pandas>=1.4.0",
+    "scipy>=1.8.0",
+    "polars>=0.20.0",
+    "scikit-learn>=1.0.0",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.11.0",
+    "scanpy>=1.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "wheel",
+    "build",
+    "hatchling",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+exclude = [
+    "pyproject.toml",
+    "requirements.txt",
+    "README.md",
+    "*.md",
+]
+dev-mode-dirs = [".."]
+
+[tool.hatch.build.targets.wheel.sources]
+"." = "collapse"
